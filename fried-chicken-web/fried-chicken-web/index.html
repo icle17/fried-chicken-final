@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>究極酥脆：炸雞演進史</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍗</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="究極酥脆：炸雞演進史" />
+    <meta property="og:description" content="一份由炸雞愛好者製作的期末網頁，探索跨越世紀的酥脆靈魂。" />
+    
+    <style>
+        /* --- 全域設定 --- */
+        html {
+            scroll-behavior: smooth; /* 平滑捲動 */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #120C0A; /* 深色背景 */
+            /* 優先使用酷炫的 Google 字體 */
+            font-family: 'Montserrat', 'Noto Serif TC', "Microsoft JhengHei", sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- 頂部導覽列 (Navbar) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 12, 10, 0.8);
+            backdrop-filter: blur(10px); /* 磨砂玻璃特效 */
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 176, 121, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 900; /* 加粗 */
+            color: #FFB079;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFB079;
+        }
+
+        /* --- Hero 首頁區塊 --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #1B1D38;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 10%;
+            box-sizing: border-box;
+            background-image: url('images/Frame 1.png'); /* 背景圖路徑 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 流光漸層大標題 */
+        .hero-title {
+            font-size: 6vw;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFB079 50%, #FFDEC7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 4px 20px rgba(255, 176, 121, 0.3);
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 2.5vw;
+            font-weight: 700;
+            color: #FFDEC7;
+            margin-bottom: 60px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 開始探索按鈕 */
+        .start-btn {
+            background-color: #FFB079;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 176, 121, 0.8);
+        }
+
+        /* --- 向下滑動小動畫 (Scroll Indicator) --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        .mouse {
+            width: 30px;
+            height: 50px;
+            border: 2px solid #FFDEC7;
+            border-radius: 20px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .wheel {
+            width: 4px;
+            height: 8px;
+            background-color: #FFB079;
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s infinite;
+        }
+
+        .scroll-text {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #FFDEC7;
+            text-transform: uppercase;
+        }
+
+        @keyframes scroll {
+            0% { top: 10px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        /* --- 切換按鈕區 (Tabs) --- */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 80px 0 40px 0; /* 上方加寬一點距離 */
+            background-color: #120C0A;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: #2A2A2A;
+            color: #FFDEC7;
+            border: 2px solid #FFB079;
+            padding: 15px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: #FFB079;
+            color: #120C0A;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 176, 121, 0.3);
+        }
+
+        /* --- 內容展示區 (含進場動畫) --- */
+        .content-section {
+            display: none; /* 預設隱藏 */
+            width: 100%;
+            min-height: 80vh;
+            padding: 50px 10%;
+            box-sizing: border-box;
+            background-color: #120C0A;
+            /* 進場動畫設定 */
+            animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .content-section.active-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text-box {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 50px;
+        }
+
+        .text-box h2 {
+            font-size: 48px;
+            color: #FFB079;
+            margin-bottom: 30px;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .text-box p {
+            font-size: 20px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            color: #ddd;
+        }
+
+        .image-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        
+        .image-box img:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* --- 關於我區塊 (About Section) --- */
+        .about-section {
+            background-color: #1B1D38;
+            padding: 100px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 176, 121, 0.1) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 176, 121, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #FFB079;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(255, 176, 121, 0.4);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .profile-img:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 10px;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .about-text .role {
+            font-size: 18px;
+            color: #FFB079;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+            text-indent: 2em; /* 首行縮排兩字 */
+        }
+
+        .social-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 176, 121, 0.1);
+            color: #FFDEC7;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 10px;
+            border: 1px solid rgba(255, 176, 121, 0.3);
+        }
+
+        /* --- 頁尾 (Footer) --- */
+        footer {
+            background-color: #0d0907;
+            padding: 40px 20px;
+            text-align: center;
+            color: #888;
+            border-top: 1px solid #333;
+        }
+
+        /* --- 手機版 RWD 調整 --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .nav-links { display: none; } /* 手機版暫時隱藏選單 */
+            .hero-title { font-size: 40px; }
+            .hero-subtitle { font-size: 20px; }
+            .content-section.active-content { flex-direction: column; }
+            .text-box { margin-right: 0; margin-bottom: 40px; }
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            .about-text p { text-align: left; }
+        }
+
+
+/* --- 回到頂部按鈕 (Back to Top) --- */
+.back-to-top {
+    position: fixed; /* 固定在螢幕上，不隨捲動消失 */
+    bottom: 30px;    /* 距離底部 30px */
+    right: 30px;     /* 距離右邊 30px */
+    width: 50px;
+    height: 50px;
+    background-color: #FFB079; /* 炸雞金 */
+    color: #120C0A; /* 深色箭頭 */
+    border-radius: 50%; /* 變成圓形 */
+    display: flex;
+    justify-content: center; /* 內容置中 */
+    align-items: center;
+    text-decoration: none; /* 去除底線 */
+    font-size: 24px; /* 箭頭大小 */
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 176, 121, 0.4); /* 發光陰影 */
+    z-index: 9999; /* 確保它浮在最上層 */
+    transition: all 0.3s ease; /* 動畫 */
+    opacity: 0.8; /* 平常稍微透明一點，比較不干擾 */
+}
+
+/* 滑鼠移過去的效果 */
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1); /* 往上浮一點並放大 */
+    opacity: 1; /* 變清楚 */
+    background-color: white; /* 變白色 */
+    color: #FFB079; /* 箭頭變金色 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* 白色光暈 */
+}
+
+/* 手機版稍微縮小一點，避免擋到內容 */
+@media (max-width: 768px) {
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">CRISPY.</div>
+        <div class="nav-links">
+            <a href="#">首頁</a>
+            <a href="#tabs">流派介紹</a>
+            <a href="#about">關於我們</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-title">究極酥脆：<br>炸雞演進史</div>
+        <div class="hero-subtitle">一場跨越世紀與海洋的酥脆革命。</div>
+        
+        <a href="#tabs" class="start-btn">開始探索</a>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll</div>
+        </div>
+    </div>
+
+    <div id="tabs" class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('usa')">美國</button>
+        <button class="tab-btn" onclick="switchTab('korea')">韓國</button>
+        <button class="tab-btn" onclick="switchTab('japan')">日本</button>
+    </div>
+
+    <div id="usa" class="content-section active-content">
+        <div class="text-box">
+            <h2>美式南部炸雞</h2>
+            <p>起源於 19 世紀的美國南方，這是一場蘇格蘭油炸技術與西非調味藝術的完美碰撞。每一塊炸雞都經過濃郁「酪乳（Buttermilk）」的長時間浸漬，鎖住肉汁，再裹上秘製辛香麵衣。經過高溫洗禮，外皮呈現粗獷的鱗片狀焦脆，咬下的每一口都是純粹的靈魂慰藉。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg.png" alt="美式炸雞">
+        </div>
+    </div>
+
+    <div id="korea" class="content-section">
+        <div class="text-box">
+            <h2>韓式特調炸雞</h2>
+            <p>追求極致的「二次油炸」工法，讓雞肉在保留軟嫩肉汁的同時，外皮達到如玻璃般清脆的境界。這不僅是烹飪，更是一場關於平衡的藝術——濃郁的韓式辣醬與蜂蜜，在舌尖交織出甜辣與酥脆的雙重變奏。最後撒上的白芝麻，是這場味覺慶典的完美句點。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg-1.png" alt="韓式炸雞">
+        </div>
+    </div>
+
+    <div id="japan" class="content-section">
+        <div class="text-box">
+            <h2>日式唐揚工法</h2>
+            <p>回歸純粹的日本職人靈魂，「唐揚（Karaage）」強調的是食材與醃料的深度對話。選用肉質結實的雞腿肉，浸泡於生薑、大蒜與特製醬油中吸收精華，僅裹上輕薄的片栗粉後入油鍋。金黃色澤下，是輕盈而不油膩的酥度，擠上一滴新鮮檸檬汁，瞬間昇華了炸物的層次。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg-2.png" alt="日式炸雞">
+        </div>
+    </div>
+
+    <div id="about" class="about-section">
+        <div class="about-container">
+            <div class="profile-img">
+                <img src="images/avatar.png" alt="作者頭像">
+            </div>
+            
+            <div class="about-text">
+                <h2>關於作者</h2>
+                
+                <p class="role">Web Learner | Fried Chicken Lover</p>
+                
+                <p>
+                    嗨！我是 17。這是一個由「對炸雞的熱愛」所驅動的期末網頁作品。
+                    我相信，完美的麵衣與肉汁是世界上最偉大的發明。
+                    這個網頁結合了我正在學習的 Figma 排版與 HTML/CSS 技術，不為別的，只為了向這份酥脆美味致敬！
+                </p>
+                
+                <div class="tags">
+                    <span class="social-tag">#HTML5</span>
+                    <span class="social-tag">#CSS3</span>
+                    <span class="social-tag">#NoChickenNoLife</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 10px; font-size: 14px;">
+            Designed by <span style="color: #FFB079; font-weight: bold;">17</span> | 炸雞百科全書
+        </div>
+        <div style="font-size: 12px; opacity: 0.6;">
+            © 2026 Ultimate Fried Chicken. All Rights Reserved. <br>
+            本網頁僅供學術交流練習使用，圖片來源於網路。
+        </div>
+    </footer>
+
+<a href="#" class="back-to-top" title="回到頂部">↑</a>
+
+    <script>
+        function switchTab(country) {
+            // 1. 隱藏所有內容
+            const contents = document.querySelectorAll('.content-section');
+            contents.forEach(div => div.classList.remove('active-content'));
+
+            // 2. 移除所有按鈕的 active 狀態
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 3. 顯示選中的內容
+            document.getElementById(country).classList.add('active-content');
+
+            // 4. 點亮對應按鈕
+            const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(country));
+            if(clickedBtn) clickedBtn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
