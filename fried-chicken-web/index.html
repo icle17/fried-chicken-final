@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>究極酥脆：炸雞演進史</title>
+    <style>
+        /* --- 基礎設定 --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #120C0A; /* 深色背景 */
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif; /* 預設字體 */
+            color: white;
+            overflow-x: hidden; /* 防止左右捲動 */
+        }
+
+        /* --- Hero 區塊 (首頁) --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* 佔滿整個視窗高度 */
+            background-color: #1B1D38;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* 文字靠左 */
+            padding-left: 10%; /* 左邊留白 */
+            box-sizing: border-box;
+            background-image: url('images/Frame 1.png'); /* 背景圖 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 標題樣式 (解決重疊問題) */
+        .hero-title {
+            font-size: 6vw; /* 隨螢幕縮放 */
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 2.5vw;
+            font-weight: 700;
+            color: #FFDEC7;
+            margin-bottom: 60px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 開始按鈕 */
+        .start-btn {
+            background-color: #FFB079;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 176, 121, 0.8);
+        }
+
+        /* --- 切換按鈕區 (Tabs) --- */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 50px 0;
+            background-color: #120C0A;
+            flex-wrap: wrap; /* 手機版自動換行 */
+        }
+
+        .tab-btn {
+            background-color: #2A2A2A;
+            color: #FFDEC7;
+            border: 2px solid #FFB079;
+            padding: 15px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: #FFB079;
+            color: #120C0A;
+            transform: translateY(-5px);
+        }
+
+        /* --- 內容展示區 --- */
+        .content-section {
+            display: none; /* 預設隱藏 */
+            width: 100%;
+            min-height: 80vh;
+            padding: 50px 10%;
+            box-sizing: border-box;
+            background-color: #120C0A;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* 顯示被選中的區塊 */
+        .content-section.active-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text-box {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 50px;
+        }
+
+        .text-box h2 {
+            font-size: 48px;
+            color: #FFB079;
+            margin-bottom: 30px;
+        }
+
+        .text-box p {
+            font-size: 20px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            color: #ddd;
+        }
+
+        .image-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        
+        .image-box img:hover {
+            transform: scale(1.02);
+        }
+
+        /* 淡入動畫 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 手機版 RWD 調整 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 40px; }
+            .hero-subtitle { font-size: 20px; }
+            .content-section.active-content { flex-direction: column; }
+            .text-box { margin-right: 0; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="hero-title">究極酥脆：<br>炸雞演進史</div>
+        <div class="hero-subtitle">一場跨越世紀與海洋的酥脆革命。</div>
+        
+        <a href="#tabs" class="start-btn">開始探索</a>
+    </div>
+
+    <div id="tabs" class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('usa')">美國</button>
+        <button class="tab-btn" onclick="switchTab('korea')">韓國</button>
+        <button class="tab-btn" onclick="switchTab('japan')">日本</button>
+    </div>
+
+    <div id="usa" class="content-section active-content">
+        <div class="text-box">
+            <h2>美式南部炸雞</h2>
+            <p>起源於 19 世紀的美國南方，這是一場蘇格蘭油炸技術與西非調味藝術的完美碰撞。每一塊炸雞都經過濃郁「酪乳（Buttermilk）」的長時間浸漬，鎖住肉汁，再裹上秘製辛香麵衣。經過高溫洗禮，外皮呈現粗獷的鱗片狀焦脆，咬下的每一口都是純粹的靈魂慰藉。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg.png" alt="美式炸雞">
+        </div>
+    </div>
+
+    <div id="korea" class="content-section">
+        <div class="text-box">
+            <h2>韓式特調炸雞</h2>
+            <p>追求極致的「二次油炸」工法，讓雞肉在保留軟嫩肉汁的同時，外皮達到如玻璃般清脆的境界。這不僅是烹飪，更是一場關於平衡的藝術——濃郁的韓式辣醬與蜂蜜，在舌尖交織出甜辣與酥脆的雙重變奏。最後撒上的白芝麻，是這場味覺慶典的完美句點。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg-1.png" alt="韓式炸雞">
+        </div>
+    </div>
+
+    <div id="japan" class="content-section">
+        <div class="text-box">
+            <h2>日式唐揚工法</h2>
+            <p>回歸純粹的日本職人靈魂，「唐揚（Karaage）」強調的是食材與醃料的深度對話。選用肉質結實的雞腿肉，浸泡於生薑、大蒜與特製醬油中吸收精華，僅裹上輕薄的片栗粉後入油鍋。金黃色澤下，是輕盈而不油膩的酥度，擠上一滴新鮮檸檬汁，瞬間昇華了炸物的層次。</p>
+        </div>
+        <div class="image-box">
+            <img src="images/unsplash_QwgKqp_UVbg-2.png" alt="日式炸雞">
+        </div>
+    </div>
+
+    <script>
+        function switchTab(country) {
+            // 1. 先把所有內容隱藏
+            const contents = document.querySelectorAll('.content-section');
+            contents.forEach(div => div.classList.remove('active-content'));
+
+            // 2. 把所有按鈕的亮燈關掉
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 3. 顯示選中的國家
+            document.getElementById(country).classList.add('active-content');
+
+            // 4. 幫點擊的按鈕開燈 (這裡用 event.target 抓取點擊的按鈕)
+            // 這裡為了簡單，我們直接用 CSS 的 :focus 或手動對應，
+            // 但最簡單的方式是迴圈判斷文字，這裡直接用簡單的寫法：
+            const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(country));
+            if(clickedBtn) clickedBtn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
